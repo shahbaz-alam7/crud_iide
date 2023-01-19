@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AddProductComp from "./components/AddProductComp";
+import AllProducts from "./components/AllProducts";
+import UpdateProduct from "./components/UpdateProduct";
+import "bulma/css/bulma.min.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="container my-4">
+        <div className="columns">
+          <div className="column is-half is-offset-one-quarter">
+            <Routes>
+              <Route path="/" element={<AllProducts />} />
+              <Route path="/edit/:id" element={<UpdateProduct />} />
+              <Route path="add" element={<AddProductComp />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </Router>
   );
 }
 
