@@ -14,6 +14,7 @@ const AllProducts = () => {
     await axios.delete(`http://localhost:5000/products/${id}`);
     getProducts();
   };
+
   return (
     <div>
       <Link to="/add" className="button is-primary mt-2">
@@ -30,28 +31,30 @@ const AllProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product, index) => (
-            <tr key={product.id}>
-              <td>{index + 1}</td>
-              <td>{product.title}</td>
-              <td>{product.price}</td>
+          {products.length
+            ? products.map((product, index) => (
+                <tr key={product.id}>
+                  <td>{index + 1}</td>
+                  <td>{product.title}</td>
+                  <td>{product.price}</td>
 
-              <td>
-                <Link
-                  to={`/edit/${product.id}`}
-                  className="button is-small is-info"
-                >
-                  Edit
-                </Link>
-                <button
-                  onClick={() => deleteProduct(product.id)}
-                  className="button is-small is-danger"
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-          ))}
+                  <td>
+                    <Link
+                      to={`/edit/${product.id}`}
+                      className="button is-small is-info"
+                    >
+                      Edit
+                    </Link>
+                    <button
+                      onClick={() => deleteProduct(product.id)}
+                      className="button is-small is-danger"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))
+            : "Zero item please add first..."}
         </tbody>
       </table>
     </div>
